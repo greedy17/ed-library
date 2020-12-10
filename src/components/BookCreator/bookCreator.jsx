@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './bookCreator.css';
 
 class BookCreator extends Component {
   constructor(props) {
@@ -20,26 +21,37 @@ class BookCreator extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    console.log(this.state.title);
-    console.log(this.state.author);
+    const book ={
+      title: this.state.title,
+      author: this.state.author
+    }
+    this.props.addNewBook(book);
+    this.setState({
+      title: "",
+      author: ""
+    });
   }
 
   render(){
     return(
       <div>
+      <hr/>
+      <center>
+        <h3>Add a new book!</h3>
+      </center>
         <form onSubmit={this.handleSubmit}>
-          <div>
-              <div>
+          <div className='row col-align'>
+              <div className='col-md-4'>
                 <label>Title:</label>
                 <input type='text' name='title' value={this.state.title}
                 onChange={this.handleChange} />
               </div>
-              <div>
-              <label>Title:</label>
-                <input type='text' name='title' value={this.state.title}
-                onChange={} />
+              <div className='col-md-4'>
+              <label>Author:</label>
+                <input type='text' name='author' value={this.state.author}
+                onChange={this.handleChange} />
               </div>
-              <div>
+              <div className='col-md-4'>
                 <input type='submit' value='Add'/>
               </div>
           </div>
